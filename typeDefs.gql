@@ -24,3 +24,9 @@ type Message {
   messageDate: String
   messageUser: User!
 }
+type Query {
+  getUser: User
+}
+type Mutation {
+  signupUser(username: String!, email: String!, password: String!): User!
+}
