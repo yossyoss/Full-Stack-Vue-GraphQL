@@ -27,7 +27,8 @@ const PostSchema = new mongoose.Schema({
   },
   ceatedBy: {
     type: mongoose.Schema.Types.ObjectId,
-    required: true
+    required: true,
+    ref: "User"
   },
   messages: [
     {
