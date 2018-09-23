@@ -9,7 +9,7 @@ const PostSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  catagories: {
+  categories: {
     type: [String],
     required: true
   },
@@ -25,7 +25,9 @@ const PostSchema = new mongoose.Schema({
     type: Number,
     default: 0
   },
-  ceatedBy: {
+  // property ('createdBy') === path
+  // ref ('User') === model
+  createdBy: {
     type: mongoose.Schema.Types.ObjectId,
     required: true,
     ref: "User"

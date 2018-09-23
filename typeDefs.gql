@@ -11,24 +11,27 @@ type User {
 type Post {
   title: String!
   imageUrl: String!
-  catagories: [String]
+  categories: [String]!
   description: String!
   createdDate: String
   likes: Int
-  ceatedBy: User!
+  createdBy: User!
   messages: [Message]
 }
+
 type Message {
   _id: ID
   messageBody: String!
   messageDate: String
   messageUser: User!
 }
+
 type Query {
-  getUser: User
+  getPosts: [Post]
 }
+
 type Mutation {
-   addPost(
+  addPost(
     title: String!
     imageUrl: String!
     categories: [String]!
