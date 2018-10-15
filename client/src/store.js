@@ -60,6 +60,8 @@ export default new Vuex.Store({
         });
     },
     signinUser: ({ commit }, payload) => {
+      //clear the token
+      localStorage.setItem("token", "");
       apolloClient
         .mutate({
           mutation: SIGNIN_USER,
@@ -67,7 +69,7 @@ export default new Vuex.Store({
         })
         .then(({ data }) => {
           localStorage.setItem("token", data.signinUser.token);
-          // to make sure created method is run in main.js (we run getCurrentUser), reload the page
+          // to make sure created method is run in main.js (I run getCurrentUser), reload the page
           router.go();
         })
         .catch(err => {
