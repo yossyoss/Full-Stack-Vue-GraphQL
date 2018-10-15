@@ -47,6 +47,16 @@
           <v-icon class="hidden-sm-only" left>{{item.icon}}</v-icon>
           {{item.title}}
         </v-btn>
+
+        <!-- profile Button -->
+        <v-btn flat to="/profile" v-if="user">
+        <v-icon class="hidden-sm-only" left>account_box
+
+        </v-icon>
+        <v-badge right color="blue darken-2"></v-badge>
+        </v-btn>
+        <!-- Signout Button -->
+
       </v-toolbar-items>
     </v-toolbar>
 
@@ -62,6 +72,7 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 export default {
   name: "App",
   data() {
@@ -70,19 +81,32 @@ export default {
     };
   },
   computed: {
+    ...mapGetters(["user"]),
     horizontalNavItems() {
-      return [
+      let items = [
         { icon: "chat", title: "Posts", link: "/posts" },
         { icon: "lock_open", title: "Sign In", link: "/signin" },
         { icon: "create", title: "Sign Up", link: "/signup" }
       ];
+      if (this.user) {
+        items = [{ icon: "chat", title: "Posts", link: "/posts" }];
+      }
+      return items;
     },
     sideNavItems() {
-      return [
+      let items = [
         { icon: "chat", title: "Posts", link: "/posts" },
         { icon: "lock_open", title: "Sign In", link: "/signin" },
         { icon: "create", title: "Sign Up", link: "/signup" }
       ];
+      if (this.user) {
+        items = [
+          { icon: "chat", title: "Posts", link: "/posts" },
+          { icon: "stars", title: "Create Post", link: "/posts/add" },
+          { icon: "account_box", title: "Profile", link: "/profile" }
+        ];
+      }
+      return items;
     }
   },
   methods: {

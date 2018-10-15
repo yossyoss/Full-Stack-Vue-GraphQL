@@ -32,6 +32,7 @@ type Token {
 }
 
 type Query {
+  getCurrentUser: User
   getPosts: [Post]
 }
 
@@ -43,7 +44,6 @@ type Mutation {
     description: String!
     creatorId: ID!
   ): Post!
-
   signinUser(username: String!, password: String!): Token
   signupUser(username: String!, email: String!, password: String!): Token
 }
