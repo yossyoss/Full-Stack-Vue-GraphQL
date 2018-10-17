@@ -67,7 +67,7 @@
         </v-btn>
 
         <!-- Signout Button -->
-        <v-btn flat v-if="user">
+        <v-btn flat v-if="user" @click="handleSignoutUser">
           <v-icon class="hidden-sm-only" left>exit_to_app</v-icon>
           Signout
         </v-btn>
@@ -80,6 +80,14 @@
         <transition name="fade">
           <router-view/>
         </transition>
+
+        <!-- Auth Snackbar -->
+        <v-snackbar color="success" bottom left v-model="authSnackbar" :timeout='5000'>
+          <v-icon class="mr-3">check_circle</v-icon>
+          <h3>You are now signed in!</h3>
+          <v-btn dark flat @click="authSnackbar =false">Close</v-btn>
+        </v-snackbar>
+
       </v-container>
     </main>
   </v-app>
@@ -91,8 +99,16 @@ export default {
   name: "App",
   data() {
     return {
-      sideNav: false
+      sideNav: false,
+      authSnackbar: false
     };
+  },
+  watch: {
+    user(newValue, oldValue) {
+      if (oldValue === null) {
+        this.authSnackbar = true;
+      }
+    }
   },
   computed: {
     ...mapGetters(["user"]),
