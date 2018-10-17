@@ -7,6 +7,7 @@ import { defaultClient as apolloClient } from "./main";
 import {
   GET_CURRENT_USER,
   GET_POSTS,
+  ADD_POST,
   SIGNIN_USER,
   SIGNUP_USER
 } from "./queries";
@@ -70,6 +71,19 @@ export default new Vuex.Store({
         })
         .catch(err => {
           commit("setLoading", false);
+          console.error(err);
+        });
+    },
+    addPost: ({ commit }, payload) => {
+      apolloClient
+        .mutate({
+          mutation: Add_POST,
+          variables: payload
+        })
+        .then(({ data }) => {
+          console.log(data.addPost);
+        })
+        .catch(err => {
           console.error(err);
         });
     },
