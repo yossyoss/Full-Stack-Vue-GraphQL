@@ -26,6 +26,11 @@ export default new Router({
       component: Posts
     },
     {
+      path: "/posts/:postId",
+      name: "Post",
+      component: Posts
+    },
+    {
       path: "/post/add",
       name: "AddPost",
       component: AddPost,
