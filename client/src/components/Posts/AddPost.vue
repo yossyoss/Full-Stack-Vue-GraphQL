@@ -38,7 +38,7 @@
           <!-- Categories Select -->
           <v-layout row>
             <v-flex xs12>
-              <v-select v-model="categories" :rules="categoriesRules" :items="['Art','Education','Travel',
+              <v-select v-model="categories" :rules="categoriesRules" :items="['Art','Education','Food','Furniture','Travel',
            'Photography','Technology']" multiple label="Caregories"></v-select>
             </v-flex>
           </v-layout>
